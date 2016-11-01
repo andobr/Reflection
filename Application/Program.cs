@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Framework;
@@ -20,22 +22,20 @@ namespace Application
                 Console.WriteLine(pluginName);
 
             Console.Read();         
-        }
+        }     
 
         static List<string> GetNamesOfPlugins(string[] path)
         {
             var result = new List<string>();
-
-            foreach (var item in path)
+            foreach (var dll in path)
             {
                 result.AddRange(
-                    Assembly.LoadFrom(item)
+                    Assembly.LoadFrom(dll)
                     .GetTypes()
                     .Select(Activator.CreateInstance)
                     .Select(x => ((IPlugin)x).Name)
                     .ToList());
             }
-                
             return result;
         }
     }
