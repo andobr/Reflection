@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace Mathematica
 {
-    public class Differentiation
+    public static class Differentiation
     {
-        private static Expression Differentiate(Expression expression)
+        private static Expression Differentiate(this Expression expression)
         {
             if (expression is ConstantExpression)
             {
@@ -24,35 +24,35 @@ namespace Mathematica
                             Expression.Call(
                                 typeof(Math).GetMethod("Cos"),
                                 e.Arguments[0]),
-                            Differentiate(e.Arguments[0]));
+                            e.Arguments[0].Differentiate());
                 }
                 throw new ArgumentException();
             }
             if (expression is BinaryExpression)
             {
-                var e = SortExpressionMembers((BinaryExpression)expression);
+                var e = (BinaryExpression)expression.Differentiate();
                 if (e.NodeType == ExpressionType.Add)
                 {
                     return Expression.Add(
-                            Differentiate(e.Left),
-                            Differentiate(e.Right));
+                            e.Left.Differentiate(),
+                            e.Left.Differentiate());
                 }
                 if (e.NodeType == ExpressionType.Multiply)
                 {
                     return Expression.Add(
                             Expression.Multiply(
                                 e.Left,
-                                Differentiate(e.Right)),
+                                e.Right.Differentiate()),
                             Expression.Multiply(
                                 e.Right,
-                                Differentiate(e.Left)));
+                                e.Left.Differentiate()));
                 }
                 throw new ArgumentException();
             }
             throw new ArgumentException();
         }
 
-        private static BinaryExpression SortExpressionMembers(BinaryExpression e)
+        private static BinaryExpression SortExpressionMembers(this BinaryExpression e)
         {
             var reason = e.Right is ConstantExpression ||
                       e.Right is ParameterExpression && !(e.Left is ConstantExpression) ||
@@ -61,9 +61,9 @@ namespace Mathematica
             return reason ? Expression.MakeBinary(e.NodeType, e.Right, e.Left) : e;
         }
 
-        public static Func<double, double> GetDerivativeFunc(Expression<Func<double, double>> primitive)
+        public static Func<double, double> GetDerivativeFunc(this Expression<Func<double, double>> primitive)
         {
-            var body = Differentiate(primitive.Body);
+            var body = primitive.Body.Differentiate();
             var type = primitive.Parameters[0];
             return (Func<double, double>)Expression.Lambda(body, type).Compile();
         }
