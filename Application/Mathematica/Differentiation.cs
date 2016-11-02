@@ -30,7 +30,7 @@ namespace Mathematica
             }
             if (expression is BinaryExpression)
             {
-                var e = ((BinaryExpression)expression).SortExpressionMembers();
+                var e = (BinaryExpression) expression;
                 if (e.NodeType == ExpressionType.Add)
                 {
                     return Expression.Add(
@@ -50,15 +50,6 @@ namespace Mathematica
                 throw new ArgumentException();
             }
             throw new ArgumentException();
-        }
-
-        private static BinaryExpression SortExpressionMembers(this BinaryExpression e)
-        {
-            var reason = e.Right is ConstantExpression ||
-                      e.Right is ParameterExpression && !(e.Left is ConstantExpression) ||
-                      e.Right is MethodCallExpression && !(e.Left is ConstantExpression) && !(e.Left is ParameterExpression);
-
-            return reason ? Expression.MakeBinary(e.NodeType, e.Right, e.Left) : e;
         }
 
         public static Func<double, double> GetDerivativeFunc(this Expression<Func<double, double>> primitive)
