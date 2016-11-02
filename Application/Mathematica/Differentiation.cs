@@ -35,7 +35,7 @@ namespace Mathematica
                 {
                     return Expression.Add(
                             e.Left.Differentiate(),
-                            e.Left.Differentiate());
+                            e.Right.Differentiate());
                 }
                 if (e.NodeType == ExpressionType.Multiply)
                 {
