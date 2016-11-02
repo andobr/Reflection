@@ -25,9 +25,9 @@ namespace Application
             Console.Read();         
         }     
 
-        static List<object> GetNamesOfPlugins(string[] path)
+        static List<string> GetNamesOfPlugins(string[] path)
         {
-            var result = new List<object>();
+            var result = new List<string>();
             foreach (var dll in path)
             {
                 result.AddRange(
