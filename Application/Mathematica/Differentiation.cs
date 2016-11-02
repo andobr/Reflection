@@ -30,7 +30,7 @@ namespace Mathematica
             }
             if (expression is BinaryExpression)
             {
-                var e = (BinaryExpression)expression.Differentiate();
+                var e = ((BinaryExpression)expression).SortExpressionMembers();
                 if (e.NodeType == ExpressionType.Add)
                 {
                     return Expression.Add(
