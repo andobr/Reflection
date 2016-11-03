@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin2", "Plugin2\Plugin2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathematica", "Mathematica\Mathematica.csproj", "{1FD9A6D6-F860-44D1-8670-8EC8A3905431}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractPlugin", "..\AbstractPlugin\AbstractPlugin.csproj", "{ACB28D73-E85E-4EF5-B2B0-3F16C4F97BBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonPlugin", "NonPlugin\NonPlugin.csproj", "{5D807445-3547-4782-85D9-C8F8CDA8F9CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{1FD9A6D6-F860-44D1-8670-8EC8A3905431}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FD9A6D6-F860-44D1-8670-8EC8A3905431}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FD9A6D6-F860-44D1-8670-8EC8A3905431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB28D73-E85E-4EF5-B2B0-3F16C4F97BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB28D73-E85E-4EF5-B2B0-3F16C4F97BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB28D73-E85E-4EF5-B2B0-3F16C4F97BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB28D73-E85E-4EF5-B2B0-3F16C4F97BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D807445-3547-4782-85D9-C8F8CDA8F9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D807445-3547-4782-85D9-C8F8CDA8F9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D807445-3547-4782-85D9-C8F8CDA8F9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D807445-3547-4782-85D9-C8F8CDA8F9CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

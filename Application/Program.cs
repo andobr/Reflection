@@ -33,8 +33,9 @@ namespace Application
                 result.AddRange(
                     Assembly.LoadFrom(dll)
                     .GetTypes()
+                    .Where(typeof(IPlugin).IsAssignableFrom)
+                    .Where(x => x.GetConstructor(new Type[0]) != null)         
                     .Select(Activator.CreateInstance)
-                    .Where(x => x is IPlugin)
                     .Select(x => ((IPlugin)x).Name)
                     .ToList());
             }

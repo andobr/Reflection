@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Framework;
 
-namespace Plugin1
+namespace AbstractPlugin
 {
-    public class Plugin1 : IPlugin
+    public abstract class AbstractPlugin : IPlugin
     {
-        public string Name => "Plugin1";
+        public string Name => "Abstract Plugin";
     }
 }

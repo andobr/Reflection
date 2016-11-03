@@ -22,8 +22,8 @@ namespace Mathematica
                 {
                     return Expression.Multiply(
                             Expression.Call(
-                                typeof(Math).GetMethod("Cos"),
-                                e.Arguments[0]),
+                                typeof(Math).GetMethod("Cos"), 
+                                e.Arguments[0]), 
                             e.Arguments[0].Differentiate());
                 }
                 throw new ArgumentException();
@@ -34,18 +34,18 @@ namespace Mathematica
                 if (e.NodeType == ExpressionType.Add)
                 {
                     return Expression.Add(
-                            e.Left.Differentiate(),
-                            e.Right.Differentiate());
+                        e.Left.Differentiate(), 
+                        e.Right.Differentiate());
                 }
                 if (e.NodeType == ExpressionType.Multiply)
                 {
-                    return Expression.Add(
-                            Expression.Multiply(
-                                e.Left,
-                                e.Right.Differentiate()),
-                            Expression.Multiply(
-                                e.Right,
-                                e.Left.Differentiate()));
+                        return Expression.Add(
+                                Expression.Multiply(
+                                    e.Left, 
+                                    e.Right.Differentiate()),
+                                Expression.Multiply(
+                                    e.Right, 
+                                    e.Left.Differentiate()));
                 }
                 throw new ArgumentException();
             }
@@ -56,7 +56,7 @@ namespace Mathematica
         {
             var body = primitive.Body.Differentiate();
             var type = primitive.Parameters[0];
-            return (Func<double, double>)Expression.Lambda(body, type).Compile();
+            return ((Expression<Func<double, double>>)Expression.Lambda(body, type)).Compile();
         }
     }
 }
